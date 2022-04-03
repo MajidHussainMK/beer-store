@@ -29,8 +29,8 @@ function App() {
           path="/"
           element={
             <>
-              <Nav title="All About Beers!" />
-              <Header title="Get Your Special Beer Here" />
+              <Nav title={navTitle} />
+              <Header title={headerTitle} />
               <Search
                 value={search}
                 setValue={setSearch}
@@ -49,3 +49,6 @@ function App() {
 }
 
 export default App;
+
+export const navTitle = "All About Beers!";
+export const headerTitle = "Get Your Special Beer Here";
