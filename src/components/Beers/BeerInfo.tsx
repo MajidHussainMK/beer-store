@@ -4,13 +4,17 @@ import { Link } from "react-router-dom";
 
 export const BeerInfo = () => {
   const { beerId } = useParams<{ beerId: string }>();
-  const { data } = useBeer(beerId);
+  const { data, isLoading, error } = useBeer(beerId);
+
+  if (isLoading) {
+    return <div className="loader" />;
+  }
 
   if (!data) {
     return (
       <div className="no-beer-info">
         <BackToListings />
-        No Record found!
+        {error ? error : "No Record found!"}
       </div>
     );
   }
