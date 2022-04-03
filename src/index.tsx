@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import reportWebVitals from "./reportWebVitals";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import App from "./App";
 import "./index.css";
 
@@ -15,9 +15,11 @@ const root = createRoot(rootElement);
 
 root.render(
   <StrictMode>
-    <BrowserRouter>
+    {/* GitHub Pages doesn’t support routers that use the HTML5 pushState 
+    history API under the hood (Example, React Router using browserHistory) */}
+    <HashRouter>
       <App />
-    </BrowserRouter>
+    </HashRouter>
   </StrictMode>
 );
 

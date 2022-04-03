@@ -4,9 +4,9 @@ import { Nav } from "./components/Nav";
 import { Header } from "./components/Header";
 import { Search } from "./components/Search";
 import { BeersList } from "./components/Beers/BeersList";
-import { Outlet, Route, Routes } from "react-router-dom";
-import "./App.css";
+import { Navigate, Outlet, Route, Routes } from "react-router-dom";
 import { BeerInfo } from "./components/Beers/BeerInfo";
+import "./App.css";
 
 function App() {
   const { data } = useBeers();
@@ -43,6 +43,7 @@ function App() {
           <Route path="/" element={<BeersList beers={filteredBeers} />} />
           <Route path="/:beerId" element={<BeerInfo />} />
         </Route>
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </div>
   );
