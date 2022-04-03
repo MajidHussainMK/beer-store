@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Beer } from "./types";
-import { baseUrl } from "./_";
+import { baseUrl, isNil } from "./_";
 
 export const useBeers = () => {
   const [data, setData] = useState<Beer[]>();
@@ -12,13 +12,15 @@ export const useBeers = () => {
       if (response.ok) {
         setData(await response.json());
       } else {
-        setError(response.statusText);
+        setError(response.statusText || (await response.json()).message);
       }
     }
     fetchData();
   }, []);
 
-  return { data, error };
+  const isLoading = isNil(data) && error === "";
+
+  return { data, error, isLoading };
 };
 
 export const useBeer = (id: number | string | undefined) => {
@@ -33,7 +35,7 @@ export const useBeer = (id: number | string | undefined) => {
           const result: Beer[] = await response.json();
           setData(result?.[0]);
         } else {
-          setError(response.statusText);
+          setError(response.statusText || (await response.json()).message);
         }
       } catch (err) {
         console.log(err);
@@ -43,5 +45,7 @@ export const useBeer = (id: number | string | undefined) => {
     if (id) fetchData();
   }, [id]);
 
-  return { data, error };
+  const isLoading = isNil(data) && error === "";
+
+  return { data, error, isLoading };
 };

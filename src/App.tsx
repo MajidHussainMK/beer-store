@@ -9,7 +9,7 @@ import { BeerInfo } from "./components/Beers/BeerInfo";
 import "./App.css";
 
 function App() {
-  const { data } = useBeers();
+  const { data, isLoading } = useBeers();
   const [search, setSearch] = useState("");
 
   const filteredBeers =
@@ -40,7 +40,10 @@ function App() {
             </>
           }
         >
-          <Route path="/" element={<BeersList beers={filteredBeers} />} />
+          <Route
+            path="/"
+            element={<BeersList beers={filteredBeers} isLoading={isLoading} />}
+          />
           <Route path="/:beerId" element={<BeerInfo />} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
