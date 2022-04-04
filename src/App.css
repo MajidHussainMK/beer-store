@@ -228,3 +228,17 @@ a {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+.checkbox > input, label {
+  cursor: pointer;
+}
+
+.filters {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 8px;
+  margin-top: 16px;
+}
