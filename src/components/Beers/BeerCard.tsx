@@ -14,6 +14,7 @@ export const BeerCard = ({ beer }: { beer: Beer }) => {
         <h5>
           Volume: {beer.volume.value} {beer.volume.unit}
         </h5>
+        <h5>ABV: {beer.abv}</h5>
         <h5>PH: {beer.ph}</h5>
       </div>
     </Link>
